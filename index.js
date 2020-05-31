@@ -6,12 +6,79 @@ $(document).ready(function(){
     if(this.hash !== ''){
       event.preventDefault();
       var hash = this.hash;
+
       $('html,body').animate({
-        scrollTop: $(hash).offset().top},800,function(){
-          window.location.hash = hash;
+        scrollTop: ($(hash).offset().top-100)},800,function(){
         });
+        window.location.hash = hash;
     }
   });
+
+  //---------------------------------------------------NAVBAR HIGHLIGHTING------------------------------------
+
+  var nextValue, temp;
+  var section_ids = $('*[id^="section"]');
+  var links = $('.nav-link').splice(0,section_ids.length);
+  $(window).scroll(function()
+  {
+    //------------------Scroll Top Icon--------------
+    if (Number($(window).scrollTop())>500){
+      $('.icon-top').removeClass('disp');
+    }
+
+    if (Number($(window).scrollTop())<500){
+      console.log($(window).scrollTop());
+      if($('.icon-top').hasClass('disp') !== true){
+        $('.icon-top').addClass('disp');
+      }
+    }
+
+    // -----------Navbar Highlight------------------
+      let scrollValue = Number($(window).scrollTop());
+      for(i=0;i<section_ids.length;i++)
+      {
+          let sectionValue = Number(section_ids[i].offsetTop-100);
+          if((i+1)<section_ids.length)
+          {
+             nextValue = Number(section_ids[i+1].offsetTop-100);
+          }
+          else
+          {
+             nextValue = scrollValue+1;
+          }
+          if ((scrollValue >= sectionValue)&&(scrollValue<nextValue))
+          {
+              var idValue = section_ids[i].id;
+              idValue = idValue[0] + idValue[idValue.length-1];
+              for(let value of links)
+              {
+                  if (value.classList.contains('active'))
+                  {
+                      value.classList.remove('active');
+                  }
+                  if (idValue == value.id)
+                  {
+                      value.classList.add('active');
+                  }
+
+              }
+
+          }
+
+      }
+  });
+
+
+  // --------------------------------------Media Querying--------------------------------------
+
+  var x = window.matchMedia("(max-width:765px)");
+  var mls = $('.ml-0');
+  var mrs = $('.mr-0');
+  if (x.matches){
+    mls.removeClass('ml-0');
+    mrs.removeClass('mr-0');
+  }
+
 });
 
 function myFunction() {
@@ -24,43 +91,7 @@ function myFunction() {
   }
 }
 
-//---------------------------------------------------NAVBAR HIGHLIGHTING------------------------------------
-
-var nextValue, temp;
-var section_ids = $('*[id^="section"]').splice(1,);
-var links = $('.nav-link').splice(0,section_ids.length);
-$(window).scroll(function()
-{
-    let scrollValue = Number($(window).scrollTop());
-    for(i=0;i<section_ids.length;i++)
-    {
-        let sectionValue = Number(section_ids[i].offsetTop-1);
-        if((i+1)<section_ids.length)
-        {
-           nextValue = Number(section_ids[i+1].offsetTop-1);
-        }
-        else
-        {
-           nextValue = scrollValue+1;
-        }
-        if ((scrollValue >= sectionValue)&&(scrollValue<nextValue))
-        {
-            var idValue = section_ids[i].id;
-            idValue = idValue[0] + idValue[idValue.length-1];
-            for(let value of links)
-            {
-                if (value.classList.contains('active'))
-                {
-                    value.classList.remove('active');
-                }
-                if (idValue == value.id)
-                {
-                    value.classList.add('active');
-                }
-
-            }
-
-        }
-
-    }
-});
+function functionTop() {
+  $('body,html').animate(
+    {scrollTop:0},800);
+}
