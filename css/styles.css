@@ -250,9 +250,7 @@ body{
 
 .icon-top{
   transition: all 0.6s ease-in;
-  /* color: black; */
   position: fixed;
-  cursor: pointer;
   bottom: 25px;
   right: 10px;
   margin: 10px;
