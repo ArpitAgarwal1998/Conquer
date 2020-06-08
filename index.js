@@ -67,16 +67,13 @@ $(document).ready(function() {
   if (x.matches) {
     mls.removeClass('ml-0');
     mrs.removeClass('mr-0');
-
-    $(window).resize(function() {
-      var ht = Math.round(window.screen.width / 10);
-
-      if (ht < 76) {
-        $('#section1').css('height', ht + 'vh');
-        console.log(ht);
-      }
-    });
   }
+
+  headerResize();
+
+  $(window).resize(function() {
+    headerResize();
+    });
 
 });
 
@@ -94,4 +91,12 @@ function functionTop() {
   $('body,html').animate({
     scrollTop: 0
   }, 800);
+}
+
+function headerResize(){
+  var ht = Math.round(window.screen.width / 10);
+
+  if (ht < 76) {
+    $('#section1').css('height', ht + 'vh');
+}
 }
