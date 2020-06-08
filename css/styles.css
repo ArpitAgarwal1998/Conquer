@@ -92,7 +92,6 @@ body{
   border: solid 1px #646d7c;
   padding: 10px 25px;
   margin: 12px 10px;
-  transition: all 0.8s ease;
 }
 
 .nav-link:hover{
@@ -107,9 +106,9 @@ body{
 
 #section1{
   background: url("../img/bg-1.jpg") no-repeat;
-  background-position: bottom;
+  background-position: bottom center;
   background-attachment: fixed;
-  background-size: 100%;
+  background-size: cover;
   padding: 235px 0;
 }
 
@@ -245,12 +244,19 @@ body{
 
 /* ScrollTop */
 .disp{
-  display:none!important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+
+
 }
 
 .icon-top{
-  transition: all 0.6s ease-in;
+  transition: opacity 600ms, visibility 600ms;
+  visibility: visible;
+  opacity: 1;
+  /* color: black; */
   position: fixed;
+  outline: none;
   bottom: 25px;
   right: 10px;
   margin: 10px;
@@ -320,33 +326,35 @@ body{
 
 @media (max-width: 765px){
 
-  #section1{
-    background-position: top;
-    padding: 65px 0;
-  }
-
   .grid-container{
     max-width: 100%;
     width: 100%;
     justify-content: center;
   }
 
-  .col-3{
-    grid-template-columns: 90%;
-  }
 
   .bg-2{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
   }
-  .col-2{
+  /* #section1{
+    background-position: top;
+    padding: 65px 0;
+  } */
+
+
+    /* .col-3{
+      grid-template-columns: 375px;
+    } */
+
+  /* .col-2{
     grid-template-columns: 100%;
   }
 
   .col-4{
     grid-template-columns: 70%;
-  }
+  } */
 
   .mr{
     margin-right: 45%;
@@ -358,33 +366,99 @@ body{
     line-height: 1.7;
   }
 }
+
+
 /* -----------------------------Media Queries for NAVBAR----------------------------- */
 
-
-@media(max-width: 765px){
+@media(max-width: 766px){
   .navbar{
-    transition: all 0.6s ease-in-out;
-    display:block;
+    /* transition: all 0.6s ease-in-out; */
     width: 80%;
+    margin: 50px;
+    flex-flow: column wrap !important;
+    visibility: hidden !important;
   }
   .navbar a{
-    display:none;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    margin: 0;
   }
 
   .navbar-icon{
     display:block;
   }
+
   .responsive{
+    visibility: visible!important;
     position: fixed;
     margin: 50px;
     z-index: 1;}
 
-  .responsive .nav-link{
-    display: block;
-    float: none;
+  .responsive a{
     width: 100%;
+    visibility: visible !important;
+    opacity: 1 !important;
     margin: auto;
     text-align: center;
-    transition: all 0.6s ease;}
+    transition: opacity 0.6s;}
 }
+
+
+@media(max-width: 766px){
+
+  #section1{
+    height: 75vh;
+    overflow: hidden;
+    background-size: 100%;
+    display: flex;
+    background-position: top center;
+    padding: 0;
+  }
+
+  #section1 .container{
+    align-self: center;
+  }
+
+  .col-2{
+    grid-template-columns: 590px;
+  }
+
+  @media(max-width:595px){
+    .col-2{
+      grid-template-columns: 100%;
+    }
+  }
+
+
+  @media (min-width:520px){
+
+    .col-4{
+      grid-template-columns: 250px 250px;
+      justify-content: space-evenly;
+    }
+
+    .col-4 .card{
+      margin: 5%;
+    }
+  }
+
+  @media (min-width: 400px){
+    .col-3{
+      grid-template-columns: 400px;
+    }
+  }
+
+}
+
+@media(max-width: 520px){
+  .big-heading{
+    font-size: 50px;
+  }
+  .col-4{
+    grid-template-columns: 250px;
+  }
+
+  .col-4 .card{
+    margin: 5% 3%;
+  }
 }
