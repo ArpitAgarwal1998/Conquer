@@ -57,6 +57,9 @@ $(document).ready(function() {
 
     }
   });
+// --------------------------  Cards Animation-----------------
+  // elements_animate();
+  $(window).scroll(elements_animate);
 
 
   // --------------------------------------Media Querying--------------------------------------
@@ -73,7 +76,7 @@ $(document).ready(function() {
 
   $(window).resize(function() {
     headerResize();
-    });
+  });
 
 });
 
@@ -93,10 +96,23 @@ function functionTop() {
   }, 800);
 }
 
-function headerResize(){
-  var ht = Math.round(window.screen.width / 10);
-
+function headerResize() {
+  var ht = Math.floor(window.screen.width / 10);
   if (ht < 76) {
     $('#section1').css('height', ht + 'vh');
+  }
 }
+
+
+function elements_animate(){
+  var cards = $('.card');
+    var scrollVal = $(window).scrollTop() + 500;
+    for (let value of cards) {
+      if (value.offsetTop <= scrollVal) {
+        setTimeout(function() {
+          if (value.className.includes('visible')!= true){
+          value.className += ' visible';
+        }}, 100);
+    }
+    }
 }
