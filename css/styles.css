@@ -415,7 +415,7 @@ body{
 
 /* ----------------------Media Querying For Smaller Screen Sizes---------------------- */
 
-@media(max-width: 766px){
+@media(max-width: 780px){
 
   #section1{
     /* height: 75vh; */
